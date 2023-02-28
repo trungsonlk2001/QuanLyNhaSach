@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="840366ad-3376-4664-a94d-39053936ab8e">
+	<property name="ireport.zoom" value="1.6105100000000012"/>
+	<property name="ireport.x" value="120"/>
+	<property name="ireport.y" value="263"/>
+	<parameter name="sMaPN" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT        dbo.ChiTietPhieuNhap.SoLuong, dbo.ChiTietPhieuNhap.DonGia, dbo.Sach.MaSach, dbo.Sach.TenSach, dbo.NhanVien.MaNhanVien, dbo.NhanVien.TenNhanVien, dbo.NhaXuatBan.MaNhaXuatBan, 
+                         dbo.NhaXuatBan.TenNhaXuatBan, dbo.PhieuNhap.MaPhieuNhap, dbo.PhieuNhap.NgayLap, dbo.PhieuNhap.TongTien, dbo.ChiTietPhieuNhap.DonGia * dbo.ChiTietPhieuNhap.SoLuong as Total
+FROM            dbo.ChiTietPhieuNhap INNER JOIN
+                         dbo.PhieuNhap ON dbo.ChiTietPhieuNhap.MaPhieuNhap = dbo.PhieuNhap.MaPhieuNhap INNER JOIN
+                         dbo.NhanVien ON dbo.PhieuNhap.MaNhanVien = dbo.NhanVien.MaNhanVien INNER JOIN
+                         dbo.NhaXuatBan ON dbo.PhieuNhap.MaNhaXuatBan = dbo.NhaXuatBan.MaNhaXuatBan INNER JOIN
+                         dbo.Sach ON dbo.ChiTietPhieuNhap.MaSach = dbo.Sach.MaSach AND dbo.NhaXuatBan.MaNhaXuatBan = dbo.Sach.NhaXuatBan
+WHERE dbo.PhieuNhap.MaPhieuNhap = $P{sMaPN}]]>
+	</queryString>
+	<field name="SoLuong" class="java.lang.Integer"/>
+	<field name="DonGia" class="java.lang.String"/>
+	<field name="MaSach" class="java.lang.Integer"/>
+	<field name="TenSach" class="java.lang.String"/>
+	<field name="MaNhanVien" class="java.lang.Integer"/>
+	<field name="TenNhanVien" class="java.lang.String"/>
+	<field name="MaNhaXuatBan" class="java.lang.Integer"/>
+	<field name="TenNhaXuatBan" class="java.lang.String"/>
+	<field name="MaPhieuNhap" class="java.lang.Integer"/>
+	<field name="NgayLap" class="java.lang.String"/>
+	<field name="TongTien" class="java.math.BigDecimal"/>
+	<field name="Total" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79" uuid="4963789e-b015-44c4-87e8-f7e252e18e25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PHIẾU NHẬP SÁCH]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="22" width="71" height="20" uuid="38acdaf9-a8c5-4f12-bf59-422ef06f0004"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nhân viên:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="66" width="97" height="20" uuid="31e01c8d-5c15-4dd8-8274-32b36e30def6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nhà xuất bản:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="22" width="81" height="20" uuid="6ee616a8-82be-4f46-b8ed-cc53751a1c3e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày lập:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="66" width="81" height="20" uuid="bb84adad-8217-4733-abe3-9f838b52171d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã phiếu:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="66" width="13" height="20" uuid="643cc819-8a6d-4160-9f63-6f4232479f5c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="22" width="13" height="20" uuid="c3d4e32c-0259-49f7-ac29-8b8a04bc9129"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="22" width="26" height="20" uuid="d8c901aa-da2e-4547-ac17-36cf34a7c5d7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MaNhanVien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="22" width="153" height="20" uuid="13050568-ce38-4dbf-9d6f-8de909d3f473"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TenNhanVien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="66" width="23" height="20" uuid="d9eb8069-3378-4ef5-9454-39eacc36d6a8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MaNhaXuatBan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="164" y="66" width="140" height="20" uuid="a83e43b9-f442-44cf-a831-7e4f65e70740"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TenNhaXuatBan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="22" width="133" height="20" uuid="563123b4-1290-4492-a36d-17082b707767"/>
+				<textElement>
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NgayLap}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="66" width="51" height="20" uuid="54a4cf3c-f568-4ac8-897b-6b0b0062ed46"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MaPhieuNhap}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="59" y="0" width="239" height="61" uuid="85799de5-9860-4a80-9080-9d72876535f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên sách]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="438" y="0" width="117" height="61" uuid="042adee3-013b-45b0-9700-c5a3e34f0f47"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="0" width="49" height="61" uuid="c2ba7aa8-7af9-4ad8-88d2-023c29210de0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="59" height="61" uuid="fbd3614a-b143-48d0-b34d-ccf0d3e9275a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã sách]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="347" y="0" width="91" height="61" uuid="7cb16424-17fb-4763-9055-4fe332a3f247"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đơn giá]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="58" height="29" uuid="b668b1d8-819c-4517-88cc-d27aa5c7938d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MaSach}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="0" width="239" height="29" uuid="08f92b72-b35a-4e85-aa70-31e0bad93efa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TenSach}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="0" width="49" height="29" uuid="cf3db7a5-e3a5-4151-8b01-acfc1becdfd8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SoLuong}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="347" y="0" width="91" height="29" uuid="b2e326d5-0984-41b0-ab02-ed0a903182be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DonGia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="438" y="0" width="117" height="29" uuid="386694b6-7a38-4ef7-9288-72cded55e206"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="347" y="0" width="104" height="31" uuid="51b585db-47d2-4be0-9ac6-fe6344b89351"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thành tiền:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="451" y="0" width="104" height="31" uuid="b7530bb8-079f-4b03-befe-f6283c7f6e78"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TongTien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="66" width="555" height="24" uuid="1b4a722a-5c23-46c6-9285-66f0c79ba81e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cảm ơn Qúy khách - Hẹn gặp lại]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
